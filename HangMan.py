@@ -2,13 +2,6 @@ import os
 import random
 
 
-def clear():
-    if os.name == "posix":
-        os.system("clear")
-    elif os.name == ("ce", "nt", "dos"):
-        os.system("cls")
-
-
 def normalize(s): # It removes the accents of a string
         replacements = (
             ("á", "a"),
@@ -22,15 +15,13 @@ def normalize(s): # It removes the accents of a string
         return s
 
 
-def read_text():
+def read_text(): 
     data = []
     list_word = []
     with open('./files/data.txt','r',encoding='utf-8') as f:
         for word in f:
             data.append(word)
-    random_word = random.randrange(len(data))
-    word = data[random_word]
-    word = word.upper()
+    word = data[random.randrange(len(data))].upper()
     for i in word:
         list_word.append(i)
     list_word.pop()
@@ -41,12 +32,11 @@ def letter_analitic(letter):
     if len(letter) > 1:
         print('----- Solo puedes ingresar un caracter -----')
 
-
 def condition(word):
     lines = []
     index_lines = []
     word_correct = ''.join(word)
-    print(word)
+    # print(word)
     index_word = list(enumerate(word))
     for i in word:
         lines.append('-')
@@ -54,9 +44,9 @@ def condition(word):
     lines = ''.join(lines)
     print(lines)
     hearts = 12
-    a = 0
-    while(a<hearts):
+    for a in range(hearts):
         print('Tienes ' + str(hearts-a) + ' vidas')
+        print(lines)
         letter = input('Ingresa una letra: ')
         letter = normalize(letter)
         letter = letter.upper()
@@ -68,12 +58,12 @@ def condition(word):
                 index_lines[x] = index_lines[x].replace('-',letter)
             var = ''.join(index_lines)
         lines = var            
-        print(lines)
+        # print(lines)
         if lines == word_correct:
             print('WINNN')
             break
-        a=a+1
-        
+        os.system('cls')
+
 
 def run():
     word = read_text()
