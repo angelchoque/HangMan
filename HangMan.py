@@ -30,6 +30,7 @@ def read_text():
             data.append(word)
     random_word = random.randrange(len(data))
     word = data[random_word]
+    word = word.upper()
     for i in word:
         list_word.append(i)
     list_word.pop()
@@ -58,12 +59,12 @@ def condition(word):
         print('Tienes ' + str(hearts-a) + ' vidas')
         letter = input('Ingresa una letra: ')
         letter = normalize(letter)
+        letter = letter.upper()
         letter_analitic(letter)
         for x in range(len(index_word)):
-            # index_word[x][1] = normalize(index_word[x][1])
             var = index_word[x][1]
             var = normalize(var)
-            if letter == index_word[x][1]:
+            if letter == var:
                 index_lines[x] = index_lines[x].replace('-',letter)
             var = ''.join(index_lines)
         lines = var            
@@ -77,8 +78,6 @@ def condition(word):
 def run():
     word = read_text()
     condition(word)
-    # print('----------------------')
-    # print(normalize('é'))
 
 
 if __name__ == '__main__':
