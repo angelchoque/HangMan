@@ -28,37 +28,29 @@ def read_text():
     return list_word
 
 
-def letter_analitic(letter):
-    if len(letter) > 1:
-        print('----- Solo puedes ingresar un caracter -----')
-
 def condition(word):
     lines = []
     index_lines = []
+    hearts = 12
     word_correct = ''.join(word)
-    # print(word)
-    index_word = list(enumerate(word))
+    # index_word = word
     for i in word:
         lines.append('-')
         index_lines.append('-')
     lines = ''.join(lines)
-    print(lines)
-    hearts = 12
     for a in range(hearts):
+        print(word)
         print('Tienes ' + str(hearts-a) + ' vidas')
-        print(lines)
+        print('>>> '+lines)
         letter = input('Ingresa una letra: ')
-        letter = normalize(letter)
-        letter = letter.upper()
-        letter_analitic(letter)
-        for x in range(len(index_word)):
-            var = index_word[x][1]
-            var = normalize(var)
+        letter = normalize(letter).upper()
+        for x in range(len(word)):
+            # var = index_word[x]
+            var = normalize(word[x])
             if letter == var:
                 index_lines[x] = index_lines[x].replace('-',letter)
             var = ''.join(index_lines)
-        lines = var            
-        # print(lines)
+        lines = var
         if lines == word_correct:
             print('WINNN')
             break
