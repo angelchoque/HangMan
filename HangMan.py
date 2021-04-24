@@ -1,6 +1,52 @@
 import os
 import random
 
+def han():
+    print(''' 
+              .@@@(/*@.,(&@@@%    
+             #&   ,///@ /@&&@@@@@@&&&%  
+                    @@@@@&@%            
+                    ,&%.(@@             
+                     @(.#@%             
+                      .%,@%             
+                      /%,@&             
+                      #@/&/             
+                      %@.&.             
+                      #@.@.             
+                      (@ @.             
+                      *&.@              
+                       @(@.             
+                       @%@.             
+                       @#@,             
+                       &/%.             
+                       /,%              
+                       .&@%             
+                   %%*   ,%&,           
+               &               &        
+             &                   %      
+           ,/           ,@   %    &     
+           %    &         @@       /    
+           % .&(@,.     .   &/     %    
+          ,%   #.         .%@@#   ./    
+            #*       &@, @,     %      
+                %(     &# .(@(%         
+                    @&@@@@@%@           
+                    %*@  (,@&           
+                  %  @   .@.@//         
+                *,  %     .* & #*       
+               #   #       @. %. &      
+              %,  %        #   %  *(    
+              @ #(         #   &(@      
+                 %        ,@( %#        
+                 (/       ,..%  %       
+                (   @@&&%%.@ &  ..      
+               %   *.&     @ .*  %      
+              %   *.%      @ (&   #     
+             /  /*, /      @ %&    #    
+            #  .&. *       & ,@&  (%    
+            &&%& (.         &&&.  &     
+            *,  *              .&&  
+    ''')
 
 def normalize(s): # It removes the accents of a string
         replacements = (
@@ -39,28 +85,35 @@ def condition(word):
         index_lines.append('-')
     lines = ''.join(lines)
     for a in range(hearts):
-        print(word)
+        heart = hearts - a
+        print('------ ADIVINA LA PALABRAAA ------')
         print('Tienes ' + str(hearts-a) + ' vidas')
         print('>>> '+lines)
         letter = input('Ingresa una letra: ')
         letter = normalize(letter).upper()
         for x in range(len(word)):
-            # var = index_word[x]
             var = normalize(word[x])
             if letter == var:
                 index_lines[x] = index_lines[x].replace('-',letter)
             var = ''.join(index_lines)
         lines = var
-        if lines == word_correct:
-            print('WINNN')
-            break
         os.system('cls')
+        if lines == word_correct:
+            return True
+        elif heart == 1:
+            return False
 
 
 def run():
     word = read_text()
-    condition(word)
-
+    if condition(word):
+        print(''.join(word))
+        print('------- WINNNN ---------')
+    else:
+        print('Looser :C')
+        han()
+        print('Looser :C')
+        
 
 if __name__ == '__main__':
     run()
